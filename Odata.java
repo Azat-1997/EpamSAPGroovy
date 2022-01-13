@@ -33,7 +33,7 @@ public class Odata {
 
    }
 
-
+// Use to send Webhook.site or other resources
    public static int sendMessage(String address, String message) throws MalformedURLException, IOException {
         /*
            send message to resource and return code status.
