@@ -62,12 +62,22 @@ public class Rectangle {
     public static void main(String[] args) {
        // Make writing in files instead of printing
        Rectangle[] sample = getRandomRects(100, 1.0, 1000.0, 1.0, 1000.0)
+       File filteredByLength = new File("filteredByLength.csv")
+       File filteredByPerimeter = new File("filteredByPerimeter.csv")
        // filter by length
-       println "length,width"
-       sample.findAll({it.getLength() > 400}).each({println "${it.getLength()},${it.getWidth()}"})
+       filteredByLength.withWriter("utf-8") { writer ->
+       writer.writeLine "length,width"
+       sample.findAll({it.getLength() > 400}).each({writer.writeLine "${it.getLength()},${it.getWidth()}"})
+       }
+
        // filter by perimeter
-       println "length,width,perimeter"
-       sample.findAll({it.getPerimeter() > 400}).each({println "${it.getLength()},${it.getWidth()},${it.getPerimeter()}"})
+
+       filteredByPerimeter.withWriter("utf-8") { writer ->
+       writer.writeLine "length,width,perimeter"
+       sample.findAll({it.getPerimeter() > 400}).each({writer.writeLine "${it.getLength()},${it.getWidth()},${it.getPerimeter()}"})
+        
+       }
+
        println "find maximum area"
        Rectangle maxRect = sample.max({it.getArea()})
        println maxRect
