@@ -1,4 +1,4 @@
-import java.time.temporal.ChronoUnit
+package second
 
 public class Rectangle {
 
@@ -74,6 +74,6 @@ public class Rectangle {
        println "find index in sample of the element with the biggest area"
        println sample.findIndexOf{it.getArea() == maxRect.getArea()}
       
-     } 
+     }
 
 }
