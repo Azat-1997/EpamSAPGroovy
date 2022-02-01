@@ -52,6 +52,11 @@ public class RectangleMap{
       }
 
       // find maximum area
+      Rectangle bigRect = rectMap.values().max({it.getArea()})
+      println "The biggest rectangle"
+      println bigRect
+      println "key of rectangle and rectangle itself which is equals to the biggest one"
+      println rectMap.find({it.value.getArea() == bigRect.getArea()})
        
    }
 
