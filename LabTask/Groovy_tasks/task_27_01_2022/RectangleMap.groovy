@@ -14,10 +14,9 @@ public class RectangleMap{
       for(int i=0; i<sample; i++) {
 
            rects.put(Integer.valueOf(i),
-                     new Rectangle(generator().nextDouble() * Math.abs(maxWidth - minWidth) + minWidth,
-                     generator().nextDouble() * Math.abs(maxLength - minLength) + minLength)
+                     new Rectangle(generator.nextDouble() * Math.abs(maxWidth - minWidth) + minWidth,
+                                   generator.nextDouble() * Math.abs(maxLength - minLength) + minLength)
                     )
-
       }
   
     return rects
@@ -26,16 +25,33 @@ public class RectangleMap{
 
    public static void main(String[] args) {
 
-
       def rectMap = generateRectMap(100, 1.0, 1000.0, 1.0, 1000.0)
- 
-      println rectMap
- 
-      // filter by length 
+      File longRectMap = new File("filteredByLengthMap.csv")
+      File perimeterRectMap = new File("filteredByPerimeterMap.csv")
+      double tresholdLength = 400
+      double tresholdPerimeter = 400
+
+
+      // filter by length
+      longRectMap.withWriter("utf-8") { writer ->
+           writer.writeLine "id,length,width"
+           rectMap.findAll({it.value.getLength() > tresholdLength}).each({
+                                writer.writeLine "${it.key},${it.value.getLength()},${it.value.getWidth()}"
+                                           })
       
-      
-         
+       }
+
       // filter by perimeter
+      perimeterRectMap.withWriter("utf-8") { writer ->
+          writer.writeLine "id,length,width,perimeter"
+          rectMap.findAll({it.value.getPerimeter() > tresholdPerimeter}).each({
+                           writer.writeLine "${it.key},${it.value.getLength()},${it.value.getWidth()},${it.value.getPerimeter()}"
+                                      })
+
+
+      }
+
+      // find maximum area
        
    }
 

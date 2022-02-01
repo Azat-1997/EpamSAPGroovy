@@ -64,17 +64,20 @@ public class Rectangle {
        Rectangle[] sample = getRandomRects(100, 1.0, 1000.0, 1.0, 1000.0)
        File filteredByLength = new File("filteredByLength.csv")
        File filteredByPerimeter = new File("filteredByPerimeter.csv")
+       double tresholdLength = 400
+       double tresholdPerimeter = 400
+
        // filter by length
        filteredByLength.withWriter("utf-8") { writer ->
        writer.writeLine "length,width"
-       sample.findAll({it.getLength() > 400}).each({writer.writeLine "${it.getLength()},${it.getWidth()}"})
+       sample.findAll({it.getLength() > tresholdLength}).each({writer.writeLine "${it.getLength()},${it.getWidth()}"})
        }
 
        // filter by perimeter
 
        filteredByPerimeter.withWriter("utf-8") { writer ->
        writer.writeLine "length,width,perimeter"
-       sample.findAll({it.getPerimeter() > 400}).each({writer.writeLine "${it.getLength()},${it.getWidth()},${it.getPerimeter()}"})
+       sample.findAll({it.getPerimeter() > tresholdPerimeter}).each({writer.writeLine "${it.getLength()},${it.getWidth()},${it.getPerimeter()}"})
         
        }
 
