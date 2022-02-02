@@ -57,7 +57,32 @@ public class RectangleMap{
       println bigRect
       println "key of rectangle and rectangle itself which is equals to the biggest one"
       println rectMap.find({it.value.getArea() == bigRect.getArea()})
-       
+      
+      // Generate xml with StringBuilder
+      StringBuilder builder = new StringBuilder()
+      // start from root
+      builder.append("<root>\n")
+      rectMap.each({
+                   builder.append("  <element id=\"${it.key}\">\n")
+                   builder.append("    <width>${it.value.getWidth()}</width>\n")
+                   builder.append("    <length>${it.value.getLength()}</length>\n") 
+                   builder.append("  </element>\n")
+                   })
+ 
+      // add closed-tag
+      builder.append("</root>") 
+      // make String from builder for writing     
+      String xmlString = builder.toString()
+      File xmlByStringBuilder = new File("xmlByStringBuilder.xml")
+      xmlByStringBuilder.withWriter {writer -> writer.writeLine xmlString}
+
+
+
+      // Generate xml with MarkupBuilder
+      
+
+
+
    }
 
 }
