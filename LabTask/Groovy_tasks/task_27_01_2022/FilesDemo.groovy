@@ -69,7 +69,7 @@ public class FilesDemo {
     File directory = new File("test")
     File[] files = directory.listFiles()
     int nrow = 1000
-    mergeFiles(files, nrow, "mergedFiles.csv")
+    mergeFiles(files, nrow, "output/5ab_mergedFiles.csv")
    
     }
 }

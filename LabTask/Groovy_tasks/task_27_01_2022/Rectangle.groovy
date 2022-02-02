@@ -62,8 +62,8 @@ public class Rectangle {
     public static void main(String[] args) {
        // Make writing in files instead of printing
        Rectangle[] sample = getRandomRects(100, 1.0, 1000.0, 1.0, 1000.0)
-       File filteredByLength = new File("filteredByLength.csv")
-       File filteredByPerimeter = new File("filteredByPerimeter.csv")
+       File filteredByLength = new File("output/6a_filteredByLength.csv")
+       File filteredByPerimeter = new File("output/6b_filteredByPerimeter.csv")
        double tresholdLength = 400
        double tresholdPerimeter = 400
 

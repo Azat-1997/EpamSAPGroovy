@@ -27,8 +27,8 @@ public class RectangleMap{
    public static void main(String[] args) {
 
       def rectMap = generateRectMap(100, 1.0, 1000.0, 1.0, 1000.0)
-      File longRectMap = new File("filteredByLengthMap.csv")
-      File perimeterRectMap = new File("filteredByPerimeterMap.csv")
+      File longRectMap = new File("output/7a_filteredByLengthMap.csv")
+      File perimeterRectMap = new File("output/7b_filteredByPerimeterMap.csv")
       double tresholdLength = 400
       double tresholdPerimeter = 400
 
@@ -69,12 +69,12 @@ public class RectangleMap{
                    builder.append("    <length>${it.value.getLength()}</length>\n") 
                    builder.append("  </element>\n")
                    })
-      println rectMap.each{println "${it.key}:\n${it.value}"}
+
       // add closed-tag
       builder.append("</root>") 
       // make String from builder for writing     
       String xmlString = builder.toString()
-      File xmlByStringBuilder = new File("xmlByStringBuilder.xml")
+      File xmlByStringBuilder = new File("output/8a_xmlByStringBuilder.xml")
       xmlByStringBuilder.withWriter("utf-8") {writer -> writer.writeLine xmlString}
 
 
@@ -94,7 +94,7 @@ public class RectangleMap{
                   
              }
        // Read xmlString in file
-       File xmlByMarkup = new File("xmlByMarkup.xml")
+       File xmlByMarkup = new File("output/8b_xmlByMarkup.xml")
        
        xmlByMarkup.withWriter("utf-8") {writer -> writer.writeLine xmlWriter.toString()}
   
