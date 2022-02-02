@@ -1,3 +1,4 @@
+import groovy.xml.*
 import second.Rectangle
 
 public class RectangleMap{
@@ -68,20 +69,36 @@ public class RectangleMap{
                    builder.append("    <length>${it.value.getLength()}</length>\n") 
                    builder.append("  </element>\n")
                    })
- 
+      println rectMap.each{println "${it.key}:\n${it.value}"}
       // add closed-tag
       builder.append("</root>") 
       // make String from builder for writing     
       String xmlString = builder.toString()
       File xmlByStringBuilder = new File("xmlByStringBuilder.xml")
-      xmlByStringBuilder.withWriter {writer -> writer.writeLine xmlString}
+      xmlByStringBuilder.withWriter("utf-8") {writer -> writer.writeLine xmlString}
 
 
 
       // Generate xml with MarkupBuilder
-      
+      def xmlWriter = new StringWriter()
+      def xml = new MarkupBuilder(xmlWriter)   
+      xml.root{                    
+                     // if default alias 'it' is used then Groovy throws null pointer exception (I don't understand why it's happening)
+                     rectMap.each({rect ->
+                         element(id: "${rect.key}") {
+                             width "${rect.value.getWidth()}"
+                             length "${rect.value.getLength()}"
 
-
+                                        }                                
+                                 })
+                  
+             }
+       // Read xmlString in file
+       File xmlByMarkup = new File("xmlByMarkup.xml")
+       
+       xmlByMarkup.withWriter("utf-8") {writer -> writer.writeLine xmlWriter.toString()}
+  
+       
 
    }
 
