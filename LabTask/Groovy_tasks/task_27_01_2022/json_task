@@ -1,0 +1,21 @@
+8a) Сгенерировать json файл из Map из задания 7, используя JsonBuilder
+
+{
+   “elements”: [ {
+      “id”: “id элемента”,
+      “width”: “”,
+      “length”: “”
+      },{…},…
+   ]
+}
+{
+   “element_${id}”: {
+      “id”: “id элемента”,
+      “width”: “”,
+      “length”: “”
+      },
+   “element_${id}”: {…},…
+
+}
+
+

@@ -15,7 +15,7 @@ public class FilesDemo {
   }
 
   testFile.withWriter("utf-8") {
-   writer -> writer.writeLine(data.join('\n'))
+  writer -> writer.writeLine(data.join('\n'))
           }
 
   }

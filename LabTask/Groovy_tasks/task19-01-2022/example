@@ -1,0 +1,17 @@
+например таким образом:
+
+объявляется функция
+
+<xsl:template name="uppercase">
+<xsl:param name="value"/>
+<xsl:value-of select="normalize-space(translate($value, 'abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'))"/>
+<xsl:text>, </xsl:text>
+</xsl:template>
+
+
+
+и потом внутри она вызывается
+
+<xsl:call-template name="uppercase">
+<xsl:with-param name="value" select=""/>
+</xsl:call-template>

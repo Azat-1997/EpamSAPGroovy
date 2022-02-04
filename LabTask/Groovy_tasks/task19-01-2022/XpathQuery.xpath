@@ -1,0 +1,16 @@
+# get all last_name elements
+
+/S:Envelope/S:Body/queryResponse/result/sfobject/person/personal_information/last_name 
+
+# Get 'last_modified_on' of the personal_information node for each employee record
+
+/S:Envelope/S:Body/queryResponse/result/sfobject/person/personal_information/last_modified_on
+
+# Get 'formal_name' of the employee whose country_of_birth is USA
+
+/S:Envelope/S:Body/queryResponse/result/sfobject/person[country_of_birth='USA']/personal_information/formal_name 
+
+# Get 'start_date' of the most recent job_information node for each employee record
+
+/S:Envelope/S:Body/queryResponse/result/sfobject/person/employment_information/job_information[1]/start_date
+

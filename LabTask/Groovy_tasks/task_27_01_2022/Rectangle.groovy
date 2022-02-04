@@ -59,6 +59,26 @@ public class Rectangle {
 }
 
 
+   static HashMap<Integer, Rectangle> generateRectMap(int sample, double minWidth,
+                          double maxWidth, double minLength,
+                          double maxLength) {
+
+      Random generator = new Random()
+      HashMap<Integer, Rectangle> rects = new HashMap<>()
+
+      for(int i=0; i<sample; i++) {
+
+           rects.put(Integer.valueOf(i),
+                     new Rectangle(generator.nextDouble() * Math.abs(maxWidth - minWidth) + minWidth,
+                                   generator.nextDouble() * Math.abs(maxLength - minLength) + minLength)
+                    )
+      }
+
+    return rects
+
+    }
+
+
     public static void main(String[] args) {
        // Make writing in files instead of printing
        Rectangle[] sample = getRandomRects(100, 1.0, 1000.0, 1.0, 1000.0)
